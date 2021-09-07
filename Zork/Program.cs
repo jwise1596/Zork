@@ -8,47 +8,39 @@ namespace Zork
         {
             Console.WriteLine("Welcome to Zork!");
 
-            string inputString = Console.ReadLine();
-            Commands command = ToCommand(inputString.Trim());
-            Console.WriteLine(command);
-        }
-
-        private static Commands ToCommand(string commandString)
-        {
-            return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
-        }
-            switch (commandString)
+            Commands command = Commands.UNKNOWN;
+            while (command != Commands.QUIT)
             {
-                case "QUIT":
-                    command = Commands.QUIT;
-                    break;
+                Console.Write("> ");
+                command = ToCommand(Console.ReadLine().Trim());
 
-                case "LOOK":
-                    command = Commands.LOOK;
-                    break;
+                string outputString;
+                switch (command)
+                {
+                    case Commands.QUIT:
+                        outputString = "Thank you for playing!";
+                        break;
 
-                case "NORTH":
-                    command = Commands.NORTH;
-                    break;
+                    case Commands.LOOK:
+                        outputString = "This is an open field west of a white house, with a boarded front door. \nA rubber mat saying 'Welcome to Zork!' lies by the door.";
+                        break;
 
-                case "SOUTH":
-                    command = Commands.SOUTH;
-                    break;
+                    case Commands.NORTH:
+                    case Commands.SOUTH:
+                    case Commands.EAST:
+                    case Commands.WEST:
+                        outputString = $"You moved {command}.";
+                        break;
 
-                case "EAST":
-                    command = Commands.EAST;
-                    break;
+                    default:
+                        outputString = "Unknown command.";
+                        break;
+                }
 
-                case "WEST":
-                    command = Commands.WEST;
-                    break;
+                Console.WriteLine(outputString);
+            }
+        }
 
-                default:
-                    command = Commands.UNKNOWN;
-                    break;
-            };
-
-            return command;
-        }        
-    }
+        private static Commands ToCommand(string commandString) => (Enum.TryParse<Commands>(commandString, true, out commandString result) ? result : commandString.UNKNOWN);
+    }  
 }
