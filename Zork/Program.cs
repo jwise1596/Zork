@@ -1,28 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Zork
 {
-    internal class Program
+    class Program
     {
-        private static string CurrentRoom
+        private static string Location
         {
             get
             {
-                return Rooms[Location.Row, Location.Column];
+                return Rooms[LocationColumn];
             }
         }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
 
-            Commands command = Commands.UNKNOWN;
-            while (command != Commands.QUIT)
-            {
-                Console.WriteLine(CurrentRoom);
-                Console.Write("> ");
-                command = ToCommand(Console.ReadLine().Trim());
+            while (true)
+            { 
+                Console.Write($"{Location}\n> ");
+                Commands command = ToCommand(Console.ReadLine().Trim());
+                if (command == Commands.QUIT)
+                {
+                    break;
+                }
 
+                string outputString;
                 switch (command)
                 {
                     case Commands.QUIT:
@@ -30,74 +32,54 @@ namespace Zork
                         break;
 
                     case Commands.LOOK:
-                        Console.WriteLine("A rubber mat saying 'Welcome to Zork!' lies by the door.");
+                        outputString = "This is an open field west of a white house, with a boarded front door. \nA rubber mat saying 'Welcome to Zork!' lies by the door.";
                         break;
 
                     case Commands.NORTH:
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        if (Move(command) == false)
-                        {
-                            Console.WriteLine("The way is shut!");
-                        }
+                        outputString = Move(command) ? $"You moved {command}." : "The way is shut!";
                         break;
 
                     default:
-                        Console.WriteLine("Unknown command.");
+                        outputString = "Unknown command.";
                         break;
                 }
+
+                Console.WriteLine(outputString);
             }
+
+            Console.WriteLine("Finished");
         }
 
-        private static Commands ToCommand(string commandString) => (Enum.TryParse(commandString, true, out Commands result) ?result : Commands.UNKNOWN;
-        private static bool IsDirection(Commands command) => Directions.Contains(command);
+        private static Commands ToCommand(string commandString) => (Enum.TryParse<Commands>(commandString, true, out Commands result) ? result : Commands.UNKNOWN);
 
         private static bool Move(Commands command)
         {
-            bool isValidMove = true;
+            bool didMove = false;
 
             switch (command)
             {
-                case Commands.NORTH: when LocationRow < Rooms.GetLength(0) - 1:
-                    LocationRow++;
+                case Commands.NORTH:
+                case Commands.SOUTH:
                     break;
 
-                case Commands.SOUTH: when LocationRow > 0:
-                    LocationRow--;
-                    break;
-
-                case Commands.EAST when LocationColumn < Rooms.GetLength(1) - 1:
+                case Commands.EAST when LocationColumn < Rooms.Length - 1:
                     LocatonColumn++;
+                    didMove = true;
                     break;
 
                 case Commands.WEST when LocationColumn > 0:
-                    LocationColumn--;
-                    break;
-
-                default:
-                    isValidMove = false;
-                    break;
+                        LocationColumn--;
+                        didMove = true;
+                        break;
             }
 
-            return isValidMove;
+            return didMove;
         }
 
-        private static readonly string[,] Rooms = 
-        {
-            { "Rocky Trail", "South ofHouse", "Canyon View" },
-            { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" },
-            { "Dense Woods", "North of House", "Clearing" }
-        };
-
-        private static readonly List<Commands> Directions = new List<Commands>
-        {
-            Commands.NORTH,
-            Commands.SOUTH,
-            Commands.EAST,
-            Commands.WEST,
-        };
-
-        private static (int Row, int Column) Location = (1,1);
+        private static string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static int LocationColumn = 1;
     }  
 }
