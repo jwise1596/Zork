@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Zork
 {
     class Program
@@ -61,8 +62,14 @@ namespace Zork
 
             switch (command)
             {
-                case Commands.NORTH:
-                case Commands.SOUTH:
+                case Commands.NORTH when LocationRow < Rooms.Length - 1:
+                    LocationRow++;
+                    didMove = true;
+                    break;
+
+                case Commands.SOUTH when LocationRow > 0:
+                    LocationRow--;
+                    didMove = true;
                     break;
 
                 case Commands.EAST when LocationColumn < Rooms.Length - 1:
@@ -79,7 +86,11 @@ namespace Zork
             return didMove;
         }
 
-        private static string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
-        private static int LocationColumn = 1;
+        private static readonly string[,] Rooms = {
+            { "Rocky Trail", "South of House", "Canyon View" },
+            { "Forest", "West of House", "Behind House" },
+            { "Dense Woods", "North of House", "Clearing" }
+        };
+        private static (int Row, int Column) Location = (1, 1);
     }  
 }
