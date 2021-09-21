@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace Zork
 {
-    class Program
+    internal class Program
     {
         private static Room CurrentRoom
         {
@@ -16,20 +17,17 @@ namespace Zork
         {
             Console.WriteLine("Welcome to Zork!");
 
-            while (true)
+            Commands command = Commands.UNKNOWN;
+            while (command != Commands.QUIT)
             { 
-                Console.Write($"{CurrentRoom.Name}\n> ");
-               Commands command = Commands.UNKNOWN;
-                while (command == Commands.QUIT)
-                {
-                    break;
-                }
+                Console.WriteLine(CurrentRoom);
+                Console.Write("> ");
+                command = ToCommand(Console.ReadLine().Trim());
 
-                string outputString;
                 switch (command)
                 {
-                    case Commands.QUIT:
-                        outputString = "Thank you for playing!";
+                        case Commands.QUIT:
+                        Console.WriteLine("Thank you for Playing!");
                         break;
 
                     case Commands.LOOK:
@@ -40,50 +38,52 @@ namespace Zork
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        outputString = Move(command) ? $"You moved {command}." : "The way is shut!";
+                        if (Move(command) == false)
+                        {
+                            Console.WriteLine("The way is shut!");
+                        }
                         break;
 
-                    default:
-                        outputString = "Unknown command.";
+                        default:
+                        Console.WriteLine("Unknown command.");
                         break;
                 }
-
-                Console.WriteLine(outputString);
             }
-
-            Console.WriteLine("Finished");
         }
 
-        private static Commands ToCommand(string commandString) => (Enum.TryParse<Commands>(commandString, true, out Commands result) ? result : Commands.UNKNOWN);
+        private static Commands ToCommand(string commandString) => (Enum.TryParse(commandString, true, out Commands result) ?result) : Commands.UNKNOWN;
+
+        private static bool IsDirection(Commands command) => Directions.Contains(command);
 
         private static bool Move(Commands command)
         {
-            bool didMove = false;
+            Assert.IsTrue(IsDirection(command), "Invalid Direction.");
 
+            bool isValidMove = true;
             switch (command)
             {
-                case Commands.NORTH when LocationRow < Rooms.Length - 1:
-                    LocationRow++;
-                    didMove = true;
+                case Commands.NORTH when Location.Row < Rooms.GetLength(0) - 1:
+                    Location.Row++;
                     break;
 
-                case Commands.SOUTH when LocationRow > 0:
-                    LocationRow--;
-                    didMove = true;
+                case Commands.SOUTH when Location.Row > 0:
+                    Location.Row--;
                     break;
 
-                case Commands.EAST when LocationColumn < Rooms.Length - 1:
-                    LocatonColumn++;
-                    didMove = true;
+                case Commands.EAST when Location.Column < Rooms.GetLength(1) - 1:
+                    Locaton.Column++;
                     break;
 
-                case Commands.WEST when LocationColumn > 0:
-                        LocationColumn--;
-                        didMove = true;
+                case Commands.WEST when Location.Column > 0:
+                        Location.Column--;
                         break;
+
+                default:
+                    isValidMove = false;
+                    break;
             }
 
-            return didMove;
+            return isValidMove;
         }
 
         private static readonly Room[,] Rooms = {
