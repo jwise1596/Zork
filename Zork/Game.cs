@@ -35,25 +35,25 @@ namespace Zork
             Room previousRoom = null;
             while (IsRunning)
             {
-                Console.WriteLine(Player.CurrentRoom);
-                if (Player.PreviousRoom != Player.CurrentRoom)
+                Console.WriteLine(Player.Location);
+                if (previousRoom != Player.Location)
                 {
-                    Console.WriteLine(Player.CurrentRoom.Description);
-                    Player.PreviousRoom = Player.CurrentRoom;
+                    Console.WriteLine(Player.Location.Description);
+                    previousRoom = Player.CurrentRoom;
                 }
 
-                Console.Write("> ");
+                Console.Write("\n> ");
                 Commands command = ToCommand(Console.ReadLine().Trim());
 
                 switch (command)
                 {
                     case Commands.QUIT:
-                        IsRunning = false,
+                        IsRunning = false;
                         Console.WriteLine(ExitMessage);
                         break;
 
                     case Commands.LOOK:
-                        Console.WriteLine(Player.CurrentRoom.Description);
+                        Console.WriteLine(Player.Location.Description);
                         break;
 
                     case Commands.NORTH:

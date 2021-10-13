@@ -5,40 +5,47 @@ using Newtonsoft.Json;
 
 namespace Zork
 {
-    public class Room
+    public class Room : IEquatable<Room>
     {
-        [JsonProperty(Order =1)]
+        [JsonProperty(Order = 1)]
         public string Name { get; private set; }
 
         [JsonProperty(Order = 2)]
         public string Description { get; private set; }
 
+        [JsonProperty(PropertyName = "Neighbors", Order = 3)]
+        private Dictionary<Directions, string> NeighborNames { get; set; }
+
 
         [JsonIgnore]
-        public Dictionary<Directions, Room> Neighbors { get; set; }
+        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
 
-        [JsonProperty(PropertyName = "Neighbors", Order =3)]
-        public Dictionary<Directions, string> NeighborNames { get; set; }
-
-        public static bool operator ==(Room 1hs, Room rhs)
-            if (ReferenceEquals 1hs, rhs)
-
-        public Room(string name, string description = "")
+        public static bool operator ==(Room lhs, Room rhs)
         {
-            Name = name;
-            Description = description;
-        }
-
-        public void UpdateNeighbors(World world)
-        {
-            Neighbors = new Dictionary<Directions, Room>();
-            foreach (var (direction, name) in NeighborNames)
+            if (ReferenceEquals(lhs, rhs))
             {
-                Neighbors.Add(direction, world.RoomsByName[name]);
-                
+                return true;
             }
 
+            if (lhs is null || rhs is null)
+            {
+                return false;
+            }
+
+            return lhs.Name == rhs.Name;
         }
+
+        public static bool operator !=(Room lhs, Room rhs) => !(lhs == rhs);
+        public override bool Equals(object obj) => obj is Room room ? this == room : false;
+
+        public bool Equals(Room other) => this == other;
         public override string ToString() => Name;
+        public override int GetHashCode() => Name.GetHashCode();
+
+        public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
+                                                                let room = world.RoomsByName.GetValueOrDefault(entry.Value)
+                                                                where room != null
+                                                                select (Direction: entry.Key, Room: room))
+                                                                .ToDictionary(KeyValuePair => KeyValuePair.Direction, KeyValuePair => KeyValuePair.Room);
     }
 }
