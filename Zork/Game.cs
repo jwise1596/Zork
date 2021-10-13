@@ -10,7 +10,6 @@ namespace Zork
     public class Game
     {
         public World World { get; set; }
-        public string StartingLocation { get; set; }
 
         [JsonIgnore]
         public Player Player { get; private set; }
@@ -39,7 +38,7 @@ namespace Zork
                 if (previousRoom != Player.Location)
                 {
                     Console.WriteLine(Player.Location.Description);
-                    previousRoom = Player.CurrentRoom;
+                    previousRoom = Player.Location;
                 }
 
                 Console.Write("\n> ");

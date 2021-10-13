@@ -12,16 +12,13 @@ namespace Zork
 
         [JsonIgnore]
         public Room Location { get; private set; }
-        public Room CurrentRoom { get; set; }
-
-        public Room PreviousRoom { get; set; }
 
         [JsonIgnore]
         public string LocationName
         {
             get
             {
-                return LocationName?.Name;
+                return Location?.Name;
             }
             set
             {
@@ -37,10 +34,10 @@ namespace Zork
 
         public bool Move(Directions direction)
         {
-            bool isValidMove = CurrentRoom.Neighbors.TryGetValue(direction, out Room destination);
+            bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room destination);
             if (isValidMove)
             {
-                CurrentRoom = destination;
+                Location = destination;
             }
 
             return isValidMove;

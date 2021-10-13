@@ -1,6 +1,5 @@
 ﻿{
-    "World": 
-    {
+    "World": {
         "WelcomeMessage": "Welcome to Zork!",
         "ExitMessage": "Thanks for Playing!",
         "StartingLocation": "West of House",
@@ -73,5 +72,6 @@
                     "South": "Forest 3"
                 }
             }
-    }   ]
+        ]
+    }
 }
