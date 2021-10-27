@@ -11,7 +11,7 @@ namespace Zork
         public HashSet<Room> Rooms { get; set; }
 
         [JsonIgnore]
-        public ReadOnlyDictionary<string, Room> RoomsByName => new ReadOnlyDictionary<string, Room>(mRoomsByName);
+        public Dictionary<string, Room> RoomsByName => new Dictionary<string, Room>(mRoomsByName);
 
         public Player SpawnPlayer() => new Player(this, StartingLocation);
 

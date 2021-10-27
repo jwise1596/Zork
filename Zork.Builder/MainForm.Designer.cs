@@ -44,10 +44,6 @@ namespace Zork.Builder
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.neighborsGroupBox = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.southButton = new System.Windows.Forms.Button();
             this.westButton = new System.Windows.Forms.Button();
             this.eastButton = new System.Windows.Forms.Button();
@@ -61,6 +57,9 @@ namespace Zork.Builder
             this.gameTab = new System.Windows.Forms.TabPage();
             this.filesTab = new System.Windows.Forms.TabPage();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,6 +80,9 @@ namespace Zork.Builder
             newToolStripMenuItem,
             openToolStripMenuItem,
             fileSeparatorStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.toolStripMenuItem2,
             exitToolStripMenuItem});
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -90,7 +92,7 @@ namespace Zork.Builder
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             newToolStripMenuItem.Text = "&New";
             newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -98,20 +100,20 @@ namespace Zork.Builder
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
             openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             openToolStripMenuItem.Text = "&Open";
             openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // fileSeparatorStripMenuItem
             // 
             fileSeparatorStripMenuItem.Name = "fileSeparatorStripMenuItem";
-            fileSeparatorStripMenuItem.Size = new System.Drawing.Size(177, 6);
+            fileSeparatorStripMenuItem.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             exitToolStripMenuItem.Text = "E&xit";
             exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -211,10 +213,6 @@ namespace Zork.Builder
             // 
             // neighborsGroupBox
             // 
-            this.neighborsGroupBox.Controls.Add(this.label5);
-            this.neighborsGroupBox.Controls.Add(this.label4);
-            this.neighborsGroupBox.Controls.Add(this.label3);
-            this.neighborsGroupBox.Controls.Add(this.label1);
             this.neighborsGroupBox.Controls.Add(this.southButton);
             this.neighborsGroupBox.Controls.Add(this.westButton);
             this.neighborsGroupBox.Controls.Add(this.eastButton);
@@ -225,42 +223,6 @@ namespace Zork.Builder
             this.neighborsGroupBox.TabIndex = 7;
             this.neighborsGroupBox.TabStop = false;
             this.neighborsGroupBox.Text = "Neighbors";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(151, 241);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "label5";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(263, 164);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 164);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 100);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
             // 
             // southButton
             // 
@@ -376,6 +338,26 @@ namespace Zork.Builder
             this.openFileDialog.Filter = "JSON Files|*.json";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogue);
             // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Text = "&Save As...";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,7 +379,6 @@ namespace Zork.Builder
             this.mainGroupBox.ResumeLayout(false);
             this.mainGroupBox.PerformLayout();
             this.neighborsGroupBox.ResumeLayout(false);
-            this.neighborsGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,15 +401,14 @@ namespace Zork.Builder
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.GroupBox neighborsGroupBox;
         private System.Windows.Forms.TabPage filesTab;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button southButton;
         private System.Windows.Forms.Button westButton;
         private System.Windows.Forms.Button eastButton;
         private System.Windows.Forms.Button northButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 

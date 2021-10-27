@@ -8,30 +8,35 @@ namespace Zork.Builder
 {
     public partial class MainForm : Form
     {
-        private World RoomsByName 
+
+        public WorldViewModel(World world = null)
         {
-            get => mRoomsByName;
-            set => mRoomsByName = value;
+            World = world;
         }
-
-        private World mRoomsByName;
-
         public MainForm()
         {
             InitializeComponent();
+            ViewModel = new WorldViewModel();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Not yet implemented.");
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RoomsByName = JsonConvert.DeserializeObject<World>(File.ReadAllText(openFileDialog.FileName));
-                openFileDialog.DefaultExt = openFileDialog.FileName;
+                try
+                {
+                    string jsonString = (File.ReadAllText(openFileDialog.FileName));
+                    openFileDialog.DefaultExt = openFileDialog.FileName;
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -65,5 +70,14 @@ namespace Zork.Builder
 
         }
 
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
