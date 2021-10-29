@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Zork
+namespace Zork.Common
 {
     public static class DictionaryExtensions
     {

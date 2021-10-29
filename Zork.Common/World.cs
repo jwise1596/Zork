@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Linq;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 
-namespace Zork
+namespace Zork.Common
 {
-    public class World
+    public class World : INotifyPropertyChanged
     {
         public List<Room> Rooms { get; set; }
 
@@ -19,7 +20,7 @@ namespace Zork
         {
             mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
 
-            foreach (Room room in Rooms)
+           foreach (Room room in Rooms)
             {
                 room.UpdateNeighbors(this);
             }
@@ -29,5 +30,8 @@ namespace Zork
         private string StartingLocation { get; set; }
 
         private Dictionary<string, Room> mRoomsByName;
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
+
 }

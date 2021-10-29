@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Zork.Builder\ZorkBuilder.WinForms.csproj" />
     <ProjectReference Include="..\Zork.Common\Zork.Common.csproj" />
   </ItemGroup>
 

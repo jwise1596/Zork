@@ -1,14 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using Zork;
 using Zork.Common;
 
 namespace ZorkBuilder.WinForms
 {
-    public class WorldViewModel : INotifyPropertyChanged
+    internal class WorldViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public string Filename { get; set; }
         public BindingList<Room> Rooms { get; set; }
         public World World
         {

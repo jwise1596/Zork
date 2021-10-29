@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.IO;
 
-namespace Zork
+namespace Zork.Common
 {
     public class Player
     {

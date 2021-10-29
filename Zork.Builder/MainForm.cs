@@ -4,13 +4,24 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Zork.Common;
-using Zork;
+using Zork.Builder.WinForms;
 
 namespace ZorkBuilder.WinForms
 {
     public partial class MainForm : Form
     {
-        internal WorldViewModel ViewModel { get; private set; }
+        private WorldViewModel ViewModel
+        {
+            get=> _viewModel;
+            set
+            {
+                if (_viewModel != value)
+                {
+                    _viewModel = value;
+                    worldViewModelBindingSource.DataSource = _viewModel;
+                }
+            }
+        }
 
         public MainForm()
         {
@@ -27,14 +38,9 @@ namespace ZorkBuilder.WinForms
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                try
                 {
                     string jsonString = File.ReadAllText(openFileDialog.FileName);
                     ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
-                }
-                catch
-                {
-
                 }
             }
         }
@@ -45,6 +51,16 @@ namespace ZorkBuilder.WinForms
         }
 
         private void AddButton_Click(object sender, EventArgs e)
+        {
+            using (AddRoomForm addRoomForm = new AddRoomForm())
+            {
+                if (addRoomForm.ShowDialog() == DialogResult.OK)
+                {
+                    Room room = new Room(addRoomForm.RoomName);
+                }
+            }
+        }
+        private void deleteButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -77,6 +93,28 @@ namespace ZorkBuilder.WinForms
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private WorldViewModel _viewModel;
+
+        private void northButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roomsBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
