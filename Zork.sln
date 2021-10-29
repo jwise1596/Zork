@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork.Console", "Zork\Zork.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork.Common", "Zork.Common\Zork.Common.csproj", "{C0535CCC-183E-4376-B652-B43D83165D4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork.Builder.WinForms", "Zork.Builder\Zork.Builder.WinForms.csproj", "{4A3D6BCF-434A-4AEF-A526-66417B3B1E28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZorkBuilder.WinForms", "Zork.Builder\ZorkBuilder.WinForms.csproj", "{4A3D6BCF-434A-4AEF-A526-66417B3B1E28}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C0535CCC-183E-4376-B652-B43D83165D4F} = {C0535CCC-183E-4376-B652-B43D83165D4F}
 	EndProjectSection

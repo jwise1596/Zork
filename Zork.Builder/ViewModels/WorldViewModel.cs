@@ -1,17 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using Zork;
+using Zork.Common;
 
-namespace Zork.Builder.ViewModels
+namespace ZorkBuilder.WinForms
 {
-    public World world
+    public class WorldViewModel : INotifyPropertyChanged
     {
-
-    }
-    class WorldViewModel(World world = null)
-    {
-        World = world;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public string Filename { get; set; }
+        public BindingList<Room> Rooms { get; set; }
+        public World World
+        {
+            set
+            {
+                if (_world != value)
+                {
+                    _world = value;
+                    if (_world != null)
+                    {
+                        Rooms = new BindingList<Room>(_world.Rooms);
+                    }
+                    else
+                    {
+                        Rooms = new BindingList<Room>(Array.Empty<Room>());
+                    }
+                }
+            }
+        }
+        private World _world;
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Linq;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
+using Newtonsoft.Json; 
 
 namespace Zork
 {
     public class World
     {
-        public HashSet<Room> Rooms { get; set; }
+        public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
         public Dictionary<string, Room> RoomsByName => new Dictionary<string, Room>(mRoomsByName);

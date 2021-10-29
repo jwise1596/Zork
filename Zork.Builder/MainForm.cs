@@ -3,16 +3,15 @@ using System.IO;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Zork.Common;
+using Zork;
 
-namespace Zork.Builder
+namespace ZorkBuilder.WinForms
 {
     public partial class MainForm : Form
     {
+        internal WorldViewModel ViewModel { get; private set; }
 
-        public WorldViewModel(World world = null)
-        {
-            World = world;
-        }
         public MainForm()
         {
             InitializeComponent();
@@ -30,8 +29,8 @@ namespace Zork.Builder
             {
                 try
                 {
-                    string jsonString = (File.ReadAllText(openFileDialog.FileName));
-                    openFileDialog.DefaultExt = openFileDialog.FileName;
+                    string jsonString = File.ReadAllText(openFileDialog.FileName);
+                    ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
                 }
                 catch
                 {
