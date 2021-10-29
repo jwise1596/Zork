@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Zork.Common;
-using Zork.Builder.WinForms;
 
 namespace ZorkBuilder.WinForms
 {
@@ -57,6 +56,7 @@ namespace ZorkBuilder.WinForms
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
                     Room room = new Room(addRoomForm.RoomName);
+                    ViewModel.Rooms.Add(room);
                 }
             }
         }
@@ -113,6 +113,11 @@ namespace ZorkBuilder.WinForms
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void worldViewModelBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }

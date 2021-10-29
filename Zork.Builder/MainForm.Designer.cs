@@ -41,6 +41,7 @@ namespace ZorkBuilder.WinForms
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.worldTab = new System.Windows.Forms.TabPage();
             this.mainGroupBox = new System.Windows.Forms.GroupBox();
@@ -61,7 +62,6 @@ namespace ZorkBuilder.WinForms
             this.gameTab = new System.Windows.Forms.TabPage();
             this.filesTab = new System.Windows.Forms.TabPage();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.worldViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,11 +72,11 @@ namespace ZorkBuilder.WinForms
             mainMenuStrip = new System.Windows.Forms.MenuStrip();
             nameTextBox = new System.Windows.Forms.TextBox();
             mainMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.worldTab.SuspendLayout();
             this.mainGroupBox.SuspendLayout();
             this.neighborsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +162,20 @@ namespace ZorkBuilder.WinForms
             mainMenuStrip.Text = "mainMenuStrip";
             mainMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
+            // nameTextBox
+            // 
+            nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
+            nameTextBox.Location = new System.Drawing.Point(6, 32);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new System.Drawing.Size(340, 20);
+            nameTextBox.TabIndex = 9;
+            nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
+            // 
+            // roomsBindingSource
+            // 
+            this.roomsBindingSource.DataSource = this.worldViewModelBindingSource;
+            this.roomsBindingSource.CurrentChanged += new System.EventHandler(this.roomsBindingSource_CurrentChanged);
+            // 
             // mainTabControl
             // 
             this.mainTabControl.Controls.Add(this.worldTab);
@@ -211,15 +225,6 @@ namespace ZorkBuilder.WinForms
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(340, 42);
             this.descriptionTextBox.TabIndex = 10;
-            // 
-            // nameTextBox
-            // 
-            nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.roomsBindingSource, "Name", true));
-            nameTextBox.Location = new System.Drawing.Point(6, 32);
-            nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new System.Drawing.Size(340, 20);
-            nameTextBox.TabIndex = 9;
-            nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // descriptionLabel
             // 
@@ -313,6 +318,7 @@ namespace ZorkBuilder.WinForms
             // roomsListBox
             // 
             this.roomsListBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.roomsBindingSource, "Name", true));
+            this.roomsListBox.DisplayMember = "Description";
             this.roomsListBox.FormattingEnabled = true;
             this.roomsListBox.Location = new System.Drawing.Point(9, 74);
             this.roomsListBox.Name = "roomsListBox";
@@ -372,15 +378,9 @@ namespace ZorkBuilder.WinForms
             this.openFileDialog.Filter = "JSON Files|*.json";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogue);
             // 
-            // roomsBindingSource
-            // 
-            this.roomsBindingSource.DataMember = "Rooms";
-            this.roomsBindingSource.DataSource = typeof(ZorkBuilder.WinForms.WorldViewModel);
-            this.roomsBindingSource.CurrentChanged += new System.EventHandler(this.roomsBindingSource_CurrentChanged);
-            // 
             // worldViewModelBindingSource
             // 
-            this.worldViewModelBindingSource.DataSource = typeof(ZorkBuilder.WinForms.WorldViewModel);
+            this.worldViewModelBindingSource.CurrentChanged += new System.EventHandler(this.worldViewModelBindingSource_CurrentChanged);
             // 
             // MainForm
             // 
@@ -396,13 +396,13 @@ namespace ZorkBuilder.WinForms
             this.Text = "Zork Builder";
             mainMenuStrip.ResumeLayout(false);
             mainMenuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.worldTab.ResumeLayout(false);
             this.worldTab.PerformLayout();
             this.mainGroupBox.ResumeLayout(false);
             this.mainGroupBox.PerformLayout();
             this.neighborsGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
