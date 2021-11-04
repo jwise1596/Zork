@@ -9,7 +9,7 @@ namespace ZorkBuilder.WinForms
 {
     public partial class MainForm : Form
     {
-        //ublic static string AssemblyTitle = AssemblyTitle.GetExecutingAssembly().GetCustomAttribute<AssemblyTitle>;
+        //public static string AssemblyTitle = AssemblyTitle.GetExecutingAssembly().GetCustomAttribute<AssemblyTitle>;
         private GameViewModel ViewModel
         {
             get => _viewModel;
@@ -57,10 +57,8 @@ namespace ZorkBuilder.WinForms
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                {
-                    string jsonString = File.ReadAllText(openFileDialog.FileName);
-                    Game game = JsonConvert.DeserializeObject<Game>(jsonString);
-                }
+                ViewModel.Game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(openFileDialog.FileName));
+                ViewModel.FileName = openFileDialog.FileName;
             }
         }
 
@@ -117,7 +115,12 @@ namespace ZorkBuilder.WinForms
         private Room _SelectedRoom;
         private Room _StartingLocation;
         private GameViewModel _viewModel;
-       
+
+        private void gameViewModelBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
         //private readonly Dictionary<Directions, NeighborView> DirectionNeighborViewMap;
         //private bool _RefreshingData;
     }

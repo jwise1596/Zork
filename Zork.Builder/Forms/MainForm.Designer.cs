@@ -62,6 +62,8 @@ namespace ZorkBuilder.WinForms
             this.filesTab = new System.Windows.Forms.TabPage();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.gameViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.gameBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +80,8 @@ namespace ZorkBuilder.WinForms
             this.mainGroupBox.SuspendLayout();
             this.neighborsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -155,7 +159,7 @@ namespace ZorkBuilder.WinForms
             runToolStripMenuItem});
             mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             mainMenuStrip.Name = "mainMenuStrip";
-            mainMenuStrip.Size = new System.Drawing.Size(565, 24);
+            mainMenuStrip.Size = new System.Drawing.Size(607, 24);
             mainMenuStrip.TabIndex = 0;
             mainMenuStrip.Text = "mainMenuStrip";
             // 
@@ -174,7 +178,7 @@ namespace ZorkBuilder.WinForms
             this.mainTabControl.Location = new System.Drawing.Point(13, 28);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(546, 486);
+            this.mainTabControl.Size = new System.Drawing.Size(594, 534);
             this.mainTabControl.TabIndex = 1;
             // 
             // worldTab
@@ -190,7 +194,7 @@ namespace ZorkBuilder.WinForms
             this.worldTab.Location = new System.Drawing.Point(4, 22);
             this.worldTab.Name = "worldTab";
             this.worldTab.Padding = new System.Windows.Forms.Padding(3);
-            this.worldTab.Size = new System.Drawing.Size(538, 460);
+            this.worldTab.Size = new System.Drawing.Size(586, 508);
             this.worldTab.TabIndex = 0;
             this.worldTab.Text = "World";
             this.worldTab.UseVisualStyleBackColor = true;
@@ -204,7 +208,7 @@ namespace ZorkBuilder.WinForms
             this.mainGroupBox.Controls.Add(this.neighborsGroupBox);
             this.mainGroupBox.Location = new System.Drawing.Point(171, 57);
             this.mainGroupBox.Name = "mainGroupBox";
-            this.mainGroupBox.Size = new System.Drawing.Size(361, 391);
+            this.mainGroupBox.Size = new System.Drawing.Size(673, 616);
             this.mainGroupBox.TabIndex = 6;
             this.mainGroupBox.TabStop = false;
             // 
@@ -305,13 +309,12 @@ namespace ZorkBuilder.WinForms
             // 
             // roomsListBox
             // 
-            this.roomsListBox.DataSource = this.gameViewModelBindingSource;
             this.roomsListBox.FormattingEnabled = true;
             this.roomsListBox.Location = new System.Drawing.Point(9, 74);
             this.roomsListBox.Name = "roomsListBox";
             this.roomsListBox.Size = new System.Drawing.Size(153, 342);
             this.roomsListBox.TabIndex = 3;
-            this.roomsListBox.ValueMember = "Rooms";
+            this.roomsListBox.ValueMember = "Description";
             this.roomsListBox.SelectedIndexChanged += new System.EventHandler(this.roomsListBox_SelectedIndexChanged);
             // 
             // roomsLabel
@@ -366,13 +369,27 @@ namespace ZorkBuilder.WinForms
             // 
             // gameViewModelBindingSource
             // 
+            this.gameViewModelBindingSource.AllowNew = false;
             this.gameViewModelBindingSource.DataSource = typeof(ZorkBuilder.WinForms.GameViewModel);
+            this.gameViewModelBindingSource.CurrentChanged += new System.EventHandler(this.gameViewModelBindingSource_CurrentChanged);
+            // 
+            // roomsBindingSource1
+            // 
+            this.roomsBindingSource1.AllowNew = true;
+            this.roomsBindingSource1.DataMember = "Rooms";
+            this.roomsBindingSource1.DataSource = this.gameBindingSource;
+            // 
+            // gameBindingSource
+            // 
+            this.gameBindingSource.AllowNew = true;
+            this.gameBindingSource.DataMember = "Game";
+            this.gameBindingSource.DataSource = this.gameViewModelBindingSource;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 527);
+            this.ClientSize = new System.Drawing.Size(607, 562);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(mainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -389,6 +406,8 @@ namespace ZorkBuilder.WinForms
             this.mainGroupBox.PerformLayout();
             this.neighborsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gameViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,6 +436,8 @@ namespace ZorkBuilder.WinForms
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
+        private System.Windows.Forms.BindingSource roomsBindingSource1;
+        private System.Windows.Forms.BindingSource gameBindingSource;
     }
 }
 

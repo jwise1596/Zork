@@ -4,10 +4,11 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Zork.Common
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
         public World World { get; }
         public List<Room> Rooms { get; set; }
@@ -26,6 +27,8 @@ namespace Zork.Common
             World = world;
             Player = player;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void Run()
         {

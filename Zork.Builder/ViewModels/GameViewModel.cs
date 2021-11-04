@@ -2,6 +2,7 @@
 using System.IO;
 using System.ComponentModel;
 using Zork.Common;
+using System.Runtime.CompilerServices;
 
 namespace ZorkBuilder.WinForms
 {
@@ -15,31 +16,9 @@ namespace ZorkBuilder.WinForms
             get => _game;
             set
             {
-                if (_game != null)
+                if (_game != value)
                 {
-                    //_game.PropertyChanged -= Game_PropertyChanged;
-                    //_game.World.PropertyChanged -= Game;
-                    if (Game.World?.Rooms != null)
-                    {
-                        foreach (Room room in Game.World.Rooms)
-                        {
-                            //room.PropertyChanged -= Game.World.Rooms;
-                        }
-                    }
-                }
-                _game = value;
-                if (_game != null)
-                {
-                   // _game.PropertyChanged += Game_Property;
-                   // _game.World.PropertyChanged += Game.World;
-                    if (Game.World?.Rooms != null)
-                    {
-                        foreach (Room room in Game.World.Rooms)
-                        {
-                            //room.PropertyChanged += Game.World.Rooms;
-                        }
-                    }
-
+                    
                 }
                 
             }
@@ -48,11 +27,6 @@ namespace ZorkBuilder.WinForms
         public bool IsModified { get; set; }
         //public string Filename => FullPath != null ? Path.
 
-        //private void Game_PropertyChanged(object sender)
-        //{
-         //   IsModified = true;
-           // PropertyChanged?.Invoke(sender, e);
-        //}
         private Game _game;
     }
 }
