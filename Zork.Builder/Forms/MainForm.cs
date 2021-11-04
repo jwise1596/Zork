@@ -9,15 +9,15 @@ namespace ZorkBuilder.WinForms
 {
     public partial class MainForm : Form
     {
-        private WorldViewModel ViewModel
+        private GameViewModel ViewModel
         {
-            get=> _viewModel;
+            get => _viewModel;
             set
             {
                 if (_viewModel != value)
                 {
                     _viewModel = value;
-                    worldViewModelBindingSource.DataSource = _viewModel;
+                    gameViewModelBindingSource.DataSource = _viewModel;
                 }
             }
         }
@@ -25,7 +25,7 @@ namespace ZorkBuilder.WinForms
         public MainForm()
         {
             InitializeComponent();
-            ViewModel = new WorldViewModel();
+            ViewModel = new GameViewModel();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace ZorkBuilder.WinForms
             {
                 {
                     string jsonString = File.ReadAllText(openFileDialog.FileName);
-                    ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
+                    Game game = JsonConvert.DeserializeObject<Game>(jsonString);
                 }
             }
         }
@@ -60,6 +60,8 @@ namespace ZorkBuilder.WinForms
                 }
             }
         }
+
+        private GameViewModel _viewModel;
         private void deleteButton_Click(object sender, EventArgs e)
         {
 
@@ -99,8 +101,6 @@ namespace ZorkBuilder.WinForms
         {
 
         }
-
-        private WorldViewModel _viewModel;
 
         private void northButton_Click(object sender, EventArgs e)
         {

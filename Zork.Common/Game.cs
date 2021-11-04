@@ -9,10 +9,11 @@ namespace Zork.Common
 {
     public class Game
     {
-        public World World { get; set; }
+        public World World { get; }
+        public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
-        public Player Player { get; private set; }
+        public Player Player { get; set; }
 
         [JsonIgnore]
         private bool IsRunning { get; set; }

@@ -29,20 +29,11 @@ namespace ZorkBuilder.WinForms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox roomNameTextBox;
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.nameLabel = new System.Windows.Forms.Label();
-            roomNameTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // roomNameTextBox
-            // 
-            roomNameTextBox.Location = new System.Drawing.Point(12, 27);
-            roomNameTextBox.Name = "roomNameTextBox";
-            roomNameTextBox.Size = new System.Drawing.Size(340, 20);
-            roomNameTextBox.TabIndex = 1;
-            roomNameTextBox.TextChanged += new System.EventHandler(this.roomNameTextBox_TextChanged);
             // 
             // okButton
             // 
@@ -72,6 +63,13 @@ namespace ZorkBuilder.WinForms
             this.nameLabel.TabIndex = 0;
             this.nameLabel.Text = "Name";
             // 
+            // nameTextBox
+            // 
+            this.nameTextBox.Location = new System.Drawing.Point(15, 28);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(337, 20);
+            this.nameTextBox.TabIndex = 4;
+            // 
             // AddRoomForm
             // 
             this.AcceptButton = this.okButton;
@@ -79,7 +77,7 @@ namespace ZorkBuilder.WinForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(370, 90);
-            this.Controls.Add(roomNameTextBox);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -100,5 +98,6 @@ namespace ZorkBuilder.WinForms
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.TextBox nameTextBox;
     }
 }

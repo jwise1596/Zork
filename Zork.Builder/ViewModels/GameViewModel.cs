@@ -4,10 +4,10 @@ using Zork.Common;
 
 namespace ZorkBuilder.WinForms
 {
-    internal class WorldViewModel
+    internal class GameViewModel
     {
         public BindingList<Room> Rooms { get; set; }
-        public World World
+        public World world
         {
             set
             {
@@ -25,6 +25,7 @@ namespace ZorkBuilder.WinForms
                 }
             }
         }
+
         private World _world;
     }
 }
