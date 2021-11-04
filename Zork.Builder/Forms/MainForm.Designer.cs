@@ -133,7 +133,6 @@ namespace ZorkBuilder.WinForms
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(143, 6);
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -148,7 +147,6 @@ namespace ZorkBuilder.WinForms
             runToolStripMenuItem.Name = "runToolStripMenuItem";
             runToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             runToolStripMenuItem.Text = "Run";
-            runToolStripMenuItem.Click += new System.EventHandler(this.runButtonClick);
             // 
             // mainMenuStrip
             // 
@@ -160,7 +158,6 @@ namespace ZorkBuilder.WinForms
             mainMenuStrip.Size = new System.Drawing.Size(565, 24);
             mainMenuStrip.TabIndex = 0;
             mainMenuStrip.Text = "mainMenuStrip";
-            mainMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // nameTextBox
             // 
@@ -168,7 +165,6 @@ namespace ZorkBuilder.WinForms
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new System.Drawing.Size(340, 20);
             nameTextBox.TabIndex = 9;
-            nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // mainTabControl
             // 
@@ -237,7 +233,6 @@ namespace ZorkBuilder.WinForms
             this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 7;
             this.nameLabel.Text = "Name";
-            this.nameLabel.Click += new System.EventHandler(this.nameLabel_Click);
             // 
             // neighborsGroupBox
             // 
@@ -287,7 +282,6 @@ namespace ZorkBuilder.WinForms
             this.northButton.TabIndex = 0;
             this.northButton.Text = "North";
             this.northButton.UseVisualStyleBackColor = true;
-            this.northButton.Click += new System.EventHandler(this.northButton_Click);
             // 
             // deleteButton
             // 
@@ -369,7 +363,6 @@ namespace ZorkBuilder.WinForms
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON Files|*.json";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogue);
             // 
             // gameViewModelBindingSource
             // 

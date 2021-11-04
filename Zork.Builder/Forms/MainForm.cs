@@ -9,6 +9,7 @@ namespace ZorkBuilder.WinForms
 {
     public partial class MainForm : Form
     {
+        //ublic static string AssemblyTitle = AssemblyTitle.GetExecutingAssembly().GetCustomAttribute<AssemblyTitle>;
         private GameViewModel ViewModel
         {
             get => _viewModel;
@@ -22,10 +23,29 @@ namespace ZorkBuilder.WinForms
             }
         }
 
+        //private bool IsWorldLoaded
+        //{
+            //get => _isWorldLoaded;
+            //set
+            //{
+            //  _isWorldLoaded = value;
+            //  mainTabControl.Enabled = _isWorldLaoded;
+            //}
+        //}
+
         public MainForm()
         {
             InitializeComponent();
             ViewModel = new GameViewModel();
+            //IsWorldLoaded = false;
+
+           // _neighborControlMap = new Dictionary<NeighborDirections, NeighborControl>
+            //{
+              //  {NeighborDirections.North, northDirectionItemControl },
+                //{NeighborDirections.South, southDirectionsItemControl },
+                //{NeighborDirections.East, eastDirectionItemControl },
+                //{NeighborDirections.West, westDirectionsItemControl }
+            //};
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,7 +53,7 @@ namespace ZorkBuilder.WinForms
             MessageBox.Show("Not yet implemented.");
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -56,39 +76,26 @@ namespace ZorkBuilder.WinForms
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
                     Room room = new Room(addRoomForm.RoomName);
-                    ViewModel.Rooms.Add(room);
+                    ViewModel.Game.World.Rooms.Add(room);
+                    //RefreshData();
+                    //SelectedRoom = room;
+                    //ViewModel.IsModifeid = true;
+                }
+                else
+                {
+                    MessageBox.Show($"Room name \"{addRoomForm.RoomName}\" already exists.");
                 }
             }
         }
 
-        private GameViewModel _viewModel;
-        private void deleteButton_Click(object sender, EventArgs e)
+
+        private void deleteButton_Click(object sender, System.EventArgs e)
         {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void nameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void runButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openFileDialogue(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
+            if (MessageBox.Show("Delete this room?") == DialogResult.Yes)
+            {
+                ViewModel.Rooms.Remove((Room)roomsListBox.SelectedItem);
+                //roomsListBox.SelectedItem = ViewModel.Rooms.FirstOrDefault();
+            }
 
         }
 
@@ -99,27 +106,19 @@ namespace ZorkBuilder.WinForms
 
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            deleteButton.Enabled = roomsListBox.SelectedItem != null;
+           // Room selectedRoom = roomsListBox.SelectedNeighbor as Room;
+           //foreach (KeyValuePair<NeighborDirections, NeighborControl> entry in _neighborControlMap)
+            //{
+            //    entry.Value.Room = selectedRoom;
+            //}
         }
 
-        private void northButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void roomsBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void worldViewModelBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
+        private Room _SelectedRoom;
+        private Room _StartingLocation;
+        private GameViewModel _viewModel;
+       
+        //private readonly Dictionary<Directions, NeighborView> DirectionNeighborViewMap;
+        //private bool _RefreshingData;
     }
 }
