@@ -14,19 +14,6 @@ namespace Zork.Common
         [JsonIgnore]
         public Room Location { get; private set; }
 
-        [JsonIgnore]
-        public string LocationName
-        {
-            get
-            {
-                return Location?.Name;
-            }
-            set
-            {
-                Location = World?.RoomsByName.GetValueOrDefault(value);
-            }
-        }
-
         public Player(World world, string startingLocation)
         {
             World = world;
@@ -35,12 +22,24 @@ namespace Zork.Common
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public string LocationName
+        {
+            get
+            {
+                return Location.Name;
+            }
+            set
+            {
+                Location = World?.RoomsByName.GetValueOrDefault(value);
+            }
+        }
+
         public bool Move(Directions direction)
         {
-            bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room destination);
+            bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room neighbor);
             if (isValidMove)
             {
-                Location = destination;
+                Location = neighbor;
             }
 
             return isValidMove;

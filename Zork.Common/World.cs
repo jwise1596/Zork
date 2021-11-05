@@ -8,22 +8,25 @@ namespace Zork.Common
 {
     public class World : INotifyPropertyChanged
     {
-        public List<Room> Rooms { get; set; }
+        public Room[] Rooms { get; set; }
 
         [JsonIgnore]
-        public Dictionary<string, Room> RoomsByName => new Dictionary<string, Room>(mRoomsByName);
+        public Dictionary<string, Room> RoomsByName { get; set; }
 
         public Player SpawnPlayer() => new Player(this, StartingLocation);
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            mRoomsByName = Rooms.ToDictionary(room => room.Name, room => room);
-
+           RoomsByName = new Dictionary<string, Room>();
            foreach (Room room in Rooms)
-            {
-                room.UpdateNeighbors(this);
+           {
+                RoomsByName.Add(room.Name, room);
             }
+           // foreach (Room room in Rooms)
+           // {
+           //     room.UpdateNeighbors(this);
+           // }
         }
 
         [JsonProperty]

@@ -174,6 +174,7 @@ namespace ZorkBuilder.WinForms
             // 
             // gameViewModelBindingSource
             // 
+            this.gameViewModelBindingSource.AllowNew = true;
             this.gameViewModelBindingSource.DataSource = typeof(ZorkBuilder.WinForms.GameViewModel);
             // 
             // mainTabControl
@@ -276,7 +277,6 @@ namespace ZorkBuilder.WinForms
             // 
             // roomsListBox
             // 
-            this.roomsListBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.roomsBindingSource, "Name", true));
             this.roomsListBox.DataSource = this.roomsBindingSource;
             this.roomsListBox.DisplayMember = "Name";
             this.roomsListBox.FormattingEnabled = true;
@@ -284,7 +284,7 @@ namespace ZorkBuilder.WinForms
             this.roomsListBox.Name = "roomsListBox";
             this.roomsListBox.Size = new System.Drawing.Size(153, 342);
             this.roomsListBox.TabIndex = 3;
-            this.roomsListBox.ValueMember = "Description";
+            this.roomsListBox.ValueMember = "Name";
             this.roomsListBox.SelectedIndexChanged += new System.EventHandler(this.roomsListBox_SelectedIndexChanged);
             // 
             // roomsLabel

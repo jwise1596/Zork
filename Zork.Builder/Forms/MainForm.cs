@@ -76,15 +76,16 @@ namespace ZorkBuilder.WinForms
         {
             Close();
         }
-
+        int newRoomCount = 0;
         private void AddButton_Click(object sender, System.EventArgs e)
         {
+
             using (AddRoomForm addRoomForm = new AddRoomForm())
             {
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
                     Room existingRoom = ViewModel.Rooms.FirstOrDefault(room => room.Name.Equals(addRoomForm.RoomName, StringComparison.OrdinalIgnoreCase));
-                    if (existingRoom != null)
+                   if (existingRoom != null)
                     {
                         MessageBox.Show("Duplicate Record Exists.");
                     }
@@ -95,16 +96,7 @@ namespace ZorkBuilder.WinForms
                     }
                 }
             }
-        }       //ViewModel.Game.World.Rooms.Add(room);
-                    //RefreshData();
-                    //SelectedRoom = room;
-                    //ViewModel.IsModified = true;
-                //else
-                //{
-                //    MessageBox.Show($"Room name \"{addRoomForm.RoomName}\" already exists.");
-                //}
-
-
+        }       
         private void deleteButton_Click(object sender, System.EventArgs e)
         {
             if (MessageBox.Show("Delete this room?", AssemblyTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
