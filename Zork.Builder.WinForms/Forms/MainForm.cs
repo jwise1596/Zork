@@ -53,7 +53,7 @@ namespace ZorkBuilder.WinForms
             MessageBox.Show("Not yet implemented.");
         }
 
-        private void openToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void openFileButton(object sender, System.EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -74,7 +74,7 @@ namespace ZorkBuilder.WinForms
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
                     Room room = new Room(addRoomForm.RoomName);
-                    //ViewModel.Game.World.Rooms.Add(room);
+                    ViewModel.Game.World.Rooms.Add(room);
                     //RefreshData();
                     //SelectedRoom = room;
                     //ViewModel.IsModifeid = true;

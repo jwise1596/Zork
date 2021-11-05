@@ -37,17 +37,18 @@ namespace ZorkBuilder.WinForms
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(196, 53);
+            this.okButton.Location = new System.Drawing.Point(128, 54);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 2;
             this.okButton.Text = "&Ok";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(277, 53);
+            this.cancelButton.Location = new System.Drawing.Point(209, 53);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -67,7 +68,7 @@ namespace ZorkBuilder.WinForms
             // 
             this.nameTextBox.Location = new System.Drawing.Point(15, 28);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(337, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(269, 20);
             this.nameTextBox.TabIndex = 4;
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
@@ -77,7 +78,7 @@ namespace ZorkBuilder.WinForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(370, 90);
+            this.ClientSize = new System.Drawing.Size(298, 92);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.cancelButton);

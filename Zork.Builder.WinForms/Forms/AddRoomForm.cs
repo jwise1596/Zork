@@ -11,14 +11,15 @@ namespace ZorkBuilder.WinForms
         public AddRoomForm()
         {
             InitializeComponent();
-        }
-
-        private void roomNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-
+            okButton.Enabled = false;
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            okButton.Enabled = !string.IsNullOrEmpty(RoomName);
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
         {
 
         }

@@ -9,13 +9,15 @@ namespace Zork.Common
     public class Room : IEquatable<Room>, INotifyPropertyChanged
     {
         [JsonProperty(Order = 1)]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         [JsonProperty(Order = 2)]
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
+
+        public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
         public Dictionary<Directions, Room> Neighbors { get; private set; }
@@ -47,7 +49,8 @@ namespace Zork.Common
 
         public bool Equals(Room other) => this == other;
         public override string ToString() => Name;
-        public override int GetHashCode() => Name.GetHashCode();
+
+        //public override int GetHashCode() => Name.GetHashCode();
 
         public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
                                                                 let room = world.RoomsByName.GetValueOrDefault(entry.Value)
