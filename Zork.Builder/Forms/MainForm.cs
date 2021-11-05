@@ -54,6 +54,14 @@ namespace ZorkBuilder.WinForms
             MessageBox.Show("Not yet implemented.");
         }
 
+        // Room room = new Room();
+        // if (newRoomCount == 0) room.Name = "new room";
+        // else room.Name = $"new room {newRoomCount}";
+        // ViewModel.Rooms.Add(room);
+        // roomsList.SelectedItem = ViewModel.Rooms.LastOrDefault();
+        // newRoomCount++;
+
+
         private void openToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -75,10 +83,19 @@ namespace ZorkBuilder.WinForms
             {
                 if (addRoomForm.ShowDialog() == DialogResult.OK)
                 {
-                    Room room = new Room { Name = addRoomForm.RoomName };
-                    ViewModel.Rooms.Add(room);
+                    Room existingRoom = ViewModel.Rooms.FirstOrDefault(room => room.Name.Equals(addRoomForm.RoomName, StringComparison.OrdinalIgnoreCase));
+                    if (existingRoom != null)
+                    {
+                        MessageBox.Show("Duplicate Record Exists.");
+                    }
+                    else
+                    {
+                        Room room = new Room(addRoomForm.RoomName);
+                        ViewModel.Rooms.Add(room);
+                    }
                 }
-                    //ViewModel.Game.World.Rooms.Add(room);
+            }
+        }       //ViewModel.Game.World.Rooms.Add(room);
                     //RefreshData();
                     //SelectedRoom = room;
                     //ViewModel.IsModified = true;
@@ -86,8 +103,6 @@ namespace ZorkBuilder.WinForms
                 //{
                 //    MessageBox.Show($"Room name \"{addRoomForm.RoomName}\" already exists.");
                 //}
-            }
-        }
 
 
         private void deleteButton_Click(object sender, System.EventArgs e)

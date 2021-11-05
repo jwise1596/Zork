@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\NeighborControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\NeighborControl.Designer.cs">
+      <DependentUpon>NeighborControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="ViewModels\GameViewModel.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <EmbeddedResource Include="CustomControls\NeighborControl.resx">
+      <DependentUpon>NeighborControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </EmbeddedResource>

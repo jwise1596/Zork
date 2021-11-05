@@ -5,11 +5,7 @@ namespace ZorkBuilder.WinForms
 {
     public partial class AddRoomForm : Form
     {
-        public string RoomName
-        {
-            get => nameTextBox.Text;
-            set => nameTextBox.Text = value;
-        }
+        public string RoomName => nameTextBox.Text;
         public AddRoomForm()
         {
             InitializeComponent();
@@ -17,8 +13,7 @@ namespace ZorkBuilder.WinForms
         }
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            okButton.Enabled = !string.IsNullOrEmpty(RoomName);
+            okButton.Enabled = !string.IsNullOrWhiteSpace(RoomName);
         }
-
     }
 }
