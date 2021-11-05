@@ -296,6 +296,9 @@ namespace ZorkBuilder.WinForms
             // 
             // dropDown
             // 
+            this.dropDown.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.gameViewModelBindingSource, "StartingLocation", true));
+            this.dropDown.DataSource = this.gameViewModelBindingSource;
+            this.dropDown.DisplayMember = "StartingLocation";
             this.dropDown.FormattingEnabled = true;
             this.dropDown.Location = new System.Drawing.Point(9, 33);
             this.dropDown.Name = "dropDown";

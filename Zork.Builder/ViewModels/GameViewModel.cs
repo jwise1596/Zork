@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.ComponentModel;
 using Zork.Common;
-using System.Runtime.CompilerServices;
 
 namespace ZorkBuilder.WinForms
 {
@@ -11,6 +9,7 @@ namespace ZorkBuilder.WinForms
         public event PropertyChangedEventHandler PropertyChanged;
         public BindingList<Room> Rooms { get; set; }
         public string FileName { get; set; }
+        public string StartingLocation { get; set; }
         public Game Game
         {
 
@@ -33,7 +32,7 @@ namespace ZorkBuilder.WinForms
             }
         }
 
-        private string FullPath { get; set; }
+        //private string FullPath { get; set; }
         public bool IsModified { get; set; }
         //public string Filename => FullPath != null ? Path.
 

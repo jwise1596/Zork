@@ -10,7 +10,7 @@ namespace Zork.Common
 {
     public class Game : INotifyPropertyChanged
     {
-        public World World { get; }
+        public World World { get; set; }
         public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
@@ -26,6 +26,7 @@ namespace Zork.Common
         {
             World = world;
             Player = player;
+            Rooms = new List<Room>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

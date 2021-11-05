@@ -8,15 +8,16 @@ namespace Zork.Common
 {
     public class Room : IEquatable<Room>, INotifyPropertyChanged
     {
-        [JsonProperty(Order = 1)]
+        [JsonProperty(PropertyName = "Names", Order = 1)]
         public string Name { get; set; }
 
-        [JsonProperty(Order = 2)]
+        [JsonProperty(PropertyName = "Descriptions", Order = 2)]
         public string Description { get; set; }
 
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
+        //[JsonProperty(PropertyName = "Rooms", Order = 0)]
         public List<Room> Rooms { get; set; }
 
         [JsonIgnore]
@@ -37,9 +38,10 @@ namespace Zork.Common
             return lhs.Name == rhs.Name;
         }
 
-        public Room(string name = null)
+        public Room(string name = null, string description = null)
         {
             Name = name;
+            Description = description;
         }
         public static bool operator !=(Room lhs, Room rhs) => !(lhs == rhs);
 
