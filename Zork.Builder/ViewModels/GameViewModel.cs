@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.ComponentModel;
 using Zork.Common;
+using Newtonsoft.Json;
 
 namespace ZorkBuilder.WinForms
 {
@@ -32,15 +34,32 @@ namespace ZorkBuilder.WinForms
             }
         }
 
-        //private string FullPath { get; set; }
-        public bool IsModified { get; set; }
-        //public string Filename => FullPath != null ? Path.
 
-        private Game _game;
+        //public bool IsModified { get; set; }
+        //public string Filename => FullPath != null ? Path.
 
         public GameViewModel(Game game = null)
         {
             Game = game;
         }
+        public void SaveWorld()
+        {
+            if (string.IsNullOrEmpty(FileName))
+            {
+                throw new InvalidProgramException("Filename expected.");
+            }
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+            using (StreamWriter streamwriter = new StreamWriter(FileName))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamwriter))
+            {
+                serializer.Serialize(jsonWriter, _game);
+            }
+        }
+
+        private Game _game;
+        //private string FullPath { get; set; }
     }
 }

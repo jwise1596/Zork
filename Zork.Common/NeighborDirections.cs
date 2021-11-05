@@ -1,6 +1,6 @@
 ﻿namespace Zork.Common
 {
-    public enum EquipLocations
+    public enum NeighborDirections
     {
         North,
         South,

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.IO;
+using System.ComponentModel;
 
 namespace Zork.Common
 {
-    public class Player
+    public class Player : INotifyPropertyChanged
     {
         public World World { get; }
 
@@ -31,6 +32,8 @@ namespace Zork.Common
             World = world;
             LocationName = startingLocation;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool Move(Directions direction)
         {

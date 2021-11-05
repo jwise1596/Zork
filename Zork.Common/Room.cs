@@ -36,6 +36,7 @@ namespace Zork.Common
             }
 
             return lhs.Name == rhs.Name;
+            //return lhs.Description == rhs.Description;
         }
 
         public Room(string name = null, string description = null)

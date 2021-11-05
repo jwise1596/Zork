@@ -77,11 +77,11 @@ namespace ZorkBuilder.WinForms
                 {
                     Room room = new Room { Name = addRoomForm.RoomName };
                     ViewModel.Rooms.Add(room);
+                }
                     //ViewModel.Game.World.Rooms.Add(room);
                     //RefreshData();
                     //SelectedRoom = room;
                     //ViewModel.IsModified = true;
-                }
                 //else
                 //{
                 //    MessageBox.Show($"Room name \"{addRoomForm.RoomName}\" already exists.");
@@ -100,30 +100,29 @@ namespace ZorkBuilder.WinForms
         }
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            deleteButton.Enabled = roomsListBox.SelectedItem != null;
+            //deleteButton.Enabled = roomsListBox.SelectedItem != null;
            // Room selectedRoom = roomsListBox.SelectedNeighbor as Room;
            //foreach (KeyValuePair<NeighborDirections, NeighborControl> entry in _neighborControlMap)
             //{
             //    entry.Value.Room = selectedRoom;
             //}
         }
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ViewModel.FileName = saveFileDialog.FileName;
+                ViewModel.SaveWorld();
+            }
         }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => ViewModel.SaveWorld();
 
-        private Room _SelectedRoom;
-        private Room _StartingLocation;
-        private GameViewModel _viewModel;
-        private bool _isWorldLoaded;
-
-
-        private void gameViewModelBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
 
         //private readonly Dictionary<Directions, NeighborView> DirectionNeighborViewMap;
         //private bool _RefreshingData;
+        //private Room _SelectedRoom;
+        //private Room _StartingLocation;
+        private GameViewModel _viewModel;
+        private bool _isWorldLoaded;
     }
 }
