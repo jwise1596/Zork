@@ -34,10 +34,6 @@ namespace ZorkBuilder.WinForms
             }
         }
 
-
-        //public bool IsModified { get; set; }
-        //public string Filename => FullPath != null ? Path.
-
         public GameViewModel(Game game = null)
         {
             Game = game;
@@ -60,6 +56,5 @@ namespace ZorkBuilder.WinForms
         }
 
         private Game _game;
-        //private string FullPath { get; set; }
     }
 }

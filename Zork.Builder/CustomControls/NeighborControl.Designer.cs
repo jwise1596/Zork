@@ -58,7 +58,6 @@ namespace Zork.Builder.CustomControls
             this.Controls.Add(this.directionTextBox);
             this.Name = "NeighborControl";
             this.Size = new System.Drawing.Size(128, 54);
-            this.Load += new System.EventHandler(this.NeighborControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

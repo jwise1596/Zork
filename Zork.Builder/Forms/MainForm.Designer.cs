@@ -60,6 +60,10 @@ namespace ZorkBuilder.WinForms
             this.filesTab = new System.Windows.Forms.TabPage();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.neighborControl1 = new Zork.Builder.CustomControls.NeighborControl();
+            this.neighborControl2 = new Zork.Builder.CustomControls.NeighborControl();
+            this.neighborControl3 = new Zork.Builder.CustomControls.NeighborControl();
+            this.neighborControl4 = new Zork.Builder.CustomControls.NeighborControl();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +80,7 @@ namespace ZorkBuilder.WinForms
             this.mainTabControl.SuspendLayout();
             this.worldTab.SuspendLayout();
             this.mainGroupBox.SuspendLayout();
+            this.neighborsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -248,6 +253,10 @@ namespace ZorkBuilder.WinForms
             // 
             // neighborsGroupBox
             // 
+            this.neighborsGroupBox.Controls.Add(this.neighborControl4);
+            this.neighborsGroupBox.Controls.Add(this.neighborControl3);
+            this.neighborsGroupBox.Controls.Add(this.neighborControl2);
+            this.neighborsGroupBox.Controls.Add(this.neighborControl1);
             this.neighborsGroupBox.Location = new System.Drawing.Point(9, 119);
             this.neighborsGroupBox.Name = "neighborsGroupBox";
             this.neighborsGroupBox.Size = new System.Drawing.Size(337, 260);
@@ -345,6 +354,38 @@ namespace ZorkBuilder.WinForms
             this.saveFileDialog.Filter = "World files (*.json)|*.json";
             this.saveFileDialog.Title = "Save world as";
             // 
+            // neighborControl1
+            // 
+            this.neighborControl1.Location = new System.Drawing.Point(103, 19);
+            this.neighborControl1.Name = "neighborControl1";
+            this.neighborControl1.NeighborDirection = Zork.Common.NeighborDirections.North;
+            this.neighborControl1.Size = new System.Drawing.Size(128, 54);
+            this.neighborControl1.TabIndex = 0;
+            // 
+            // neighborControl2
+            // 
+            this.neighborControl2.Location = new System.Drawing.Point(203, 102);
+            this.neighborControl2.Name = "neighborControl2";
+            this.neighborControl2.NeighborDirection = Zork.Common.NeighborDirections.East;
+            this.neighborControl2.Size = new System.Drawing.Size(128, 54);
+            this.neighborControl2.TabIndex = 1;
+            // 
+            // neighborControl3
+            // 
+            this.neighborControl3.Location = new System.Drawing.Point(6, 102);
+            this.neighborControl3.Name = "neighborControl3";
+            this.neighborControl3.NeighborDirection = Zork.Common.NeighborDirections.West;
+            this.neighborControl3.Size = new System.Drawing.Size(128, 54);
+            this.neighborControl3.TabIndex = 2;
+            // 
+            // neighborControl4
+            // 
+            this.neighborControl4.Location = new System.Drawing.Point(103, 186);
+            this.neighborControl4.Name = "neighborControl4";
+            this.neighborControl4.NeighborDirection = Zork.Common.NeighborDirections.South;
+            this.neighborControl4.Size = new System.Drawing.Size(128, 54);
+            this.neighborControl4.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +407,7 @@ namespace ZorkBuilder.WinForms
             this.worldTab.PerformLayout();
             this.mainGroupBox.ResumeLayout(false);
             this.mainGroupBox.PerformLayout();
+            this.neighborsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,6 +434,10 @@ namespace ZorkBuilder.WinForms
         private System.Windows.Forms.BindingSource roomsBindingSource;
         private System.Windows.Forms.BindingSource gameViewModelBindingSource;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private Zork.Builder.CustomControls.NeighborControl neighborControl4;
+        private Zork.Builder.CustomControls.NeighborControl neighborControl3;
+        private Zork.Builder.CustomControls.NeighborControl neighborControl2;
+        private Zork.Builder.CustomControls.NeighborControl neighborControl1;
     }
 }
 

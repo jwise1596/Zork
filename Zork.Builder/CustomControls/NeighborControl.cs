@@ -6,17 +6,19 @@ namespace Zork.Builder.CustomControls
 {
     public partial class NeighborControl : UserControl
     {
-        public NeighborDirections NeighborDirection { get => _neighborDirection; set => _neighborDirection = value; }
+        public NeighborDirections NeighborDirection
+        {
+            get => _neighborDirection;
+            set
+            {
+                _neighborDirection = value;
+                directionTextBox.Text = _neighborDirection.ToString();
+            }
+        }
         public NeighborControl()
         {
             InitializeComponent();
         }
-
-        private void NeighborControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private NeighborDirections _neighborDirection;
     }
 }

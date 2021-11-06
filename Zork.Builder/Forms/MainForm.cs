@@ -41,25 +41,11 @@ namespace ZorkBuilder.WinForms
             ViewModel = new GameViewModel();
             IsWorldLoaded = false;
         }
-           // _neighborControlMap = new Dictionary<NeighborDirections, NeighborControl>
-            //{
-              //  {NeighborDirections.North, northDirectionItemControl },
-                //{NeighborDirections.South, southDirectionsItemControl },
-                //{NeighborDirections.East, eastDirectionItemControl },
-                //{NeighborDirections.West, westDirectionsItemControl }
-            //};
 
         private void newToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             MessageBox.Show("Not yet implemented.");
         }
-
-        // Room room = new Room();
-        // if (newRoomCount == 0) room.Name = "new room";
-        // else room.Name = $"new room {newRoomCount}";
-        // ViewModel.Rooms.Add(room);
-        // roomsList.SelectedItem = ViewModel.Rooms.LastOrDefault();
-        // newRoomCount++;
 
 
         private void openToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -107,12 +93,7 @@ namespace ZorkBuilder.WinForms
         }
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //deleteButton.Enabled = roomsListBox.SelectedItem != null;
-           // Room selectedRoom = roomsListBox.SelectedNeighbor as Room;
-           //foreach (KeyValuePair<NeighborDirections, NeighborControl> entry in _neighborControlMap)
-            //{
-            //    entry.Value.Room = selectedRoom;
-            //}
+            deleteButton.Enabled = roomsListBox.SelectedItem != null;
         }
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -123,12 +104,6 @@ namespace ZorkBuilder.WinForms
             }
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) => ViewModel.SaveWorld();
-
-
-        //private readonly Dictionary<Directions, NeighborView> DirectionNeighborViewMap;
-        //private bool _RefreshingData;
-        //private Room _SelectedRoom;
-        //private Room _StartingLocation;
         private GameViewModel _viewModel;
         private bool _isWorldLoaded;
     }

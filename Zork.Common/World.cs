@@ -23,10 +23,6 @@ namespace Zork.Common
            {
                 RoomsByName.Add(room.Name, room);
             }
-           // foreach (Room room in Rooms)
-           // {
-           //     room.UpdateNeighbors(this);
-           // }
         }
 
         [JsonProperty]

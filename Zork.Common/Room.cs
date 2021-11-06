@@ -27,14 +27,7 @@ namespace Zork.Common
             Name = name;
             Description = description;
         }
-        //public void UpdateNeighbors(World world)
-       // {
-       //     foreach (var pair in NeighborNames)
-       //     {
-        //        (Directions direction, string name) = (pair.Key, pair.Value);
-       //         Neighbors.Add(direction, world.RoomsByName[name]);
-       //     }
-       // }
+
         public override string ToString() => Name;
         public bool Equals(Room other) => this == other;
         public override bool Equals(object obj) => obj is Room room ? this == room : false;
