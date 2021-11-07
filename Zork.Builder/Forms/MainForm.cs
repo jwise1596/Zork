@@ -106,5 +106,7 @@ namespace ZorkBuilder.WinForms
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) => ViewModel.SaveWorld();
         private GameViewModel _viewModel;
         private bool _isWorldLoaded;
+
+
     }
 }

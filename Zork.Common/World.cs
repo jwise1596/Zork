@@ -9,6 +9,9 @@ namespace Zork.Common
     public class World : INotifyPropertyChanged
     {
         public List<Room> Rooms { get; set; }
+        public Dictionary<string, Room> mRoomsByName;
+        [JsonProperty]
+        public string StartingLocation { get; set; }
 
         [JsonIgnore]
         public Dictionary<string, Room> RoomsByName { get; set; }
@@ -25,10 +28,6 @@ namespace Zork.Common
             }
         }
 
-        [JsonProperty]
-        private string StartingLocation { get; set; }
-
-        private Dictionary<string, Room> mRoomsByName;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
