@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZorkBuilder.WinForms", "Zor
 		{C0535CCC-183E-4376-B652-B43D83165D4F} = {C0535CCC-183E-4376-B652-B43D83165D4F}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92A8C923-2C7E-46E8-84A2-05E068591351}"
+	ProjectSection(SolutionItems) = preProject
+		ConsoleOutputService.cs = ConsoleOutputService.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

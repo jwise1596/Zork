@@ -21,43 +21,44 @@ namespace Zork.Common
 
         public string WelcomeMessage { get; set; }
         public string ExitMessage { get; set; }
+        public IOutputService Output { get; set; }
+    
 
       public Game(World world, Player player)
         {
             World = world;
             Player = player;
-            Rooms = new List<Room>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Run()
         {
-            Console.WriteLine(WelcomeMessage);
+            Output.WriteLine(WelcomeMessage);
 
             IsRunning = true;
             Room previousRoom = null;
             while (IsRunning)
             {
-                Console.WriteLine(Player.Location);
+                Output.WriteLine(Player.Location);
                 if (previousRoom != Player.Location)
                 {
-                    Console.WriteLine(Player.Location.Description);
+                    Output.WriteLine(Player.Location.Description);
                     previousRoom = Player.Location;
                 }
 
-                Console.Write("\n> ");
+                Output.Write("\n> ");
                 Commands command = ToCommand(Console.ReadLine().Trim());
 
                 switch (command)
                 {
                     case Commands.QUIT:
                         IsRunning = false;
-                        Console.WriteLine(ExitMessage);
+                        Output.WriteLine(ExitMessage);
                         break;
 
                     case Commands.LOOK:
-                        Console.WriteLine(Player.Location.Description);
+                        Output.WriteLine(Player.Location.Description);
                         break;
 
                     case Commands.NORTH:
@@ -67,12 +68,12 @@ namespace Zork.Common
                         Directions direction = (Directions)command;
                         if (Player.Move(direction) == false)
                         {
-                            Console.WriteLine("The way is shut!");
+                            Output.WriteLine("The way is shut!");
                         }
                         break;
 
                     default:
-                        Console.WriteLine("Unknown command.");
+                        Output.WriteLine("Unknown command.");
                         break;
                 }
             }
@@ -82,6 +83,7 @@ namespace Zork.Common
         {
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(filename));
             game.Player = game.World.SpawnPlayer();
+            game.Output = output;
 
             return game;
         }
